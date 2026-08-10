@@ -1,15 +1,16 @@
 import React from "react";
 
-function PlantCard() {
+
+function PlantCard({ plant, onMarkSoldOut }) {
   return (
-    <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
-      {true ? (
-        <button className="primary">In Stock</button>
+    <li data-testid="plant-item">
+      <h4>{plant.name}</h4>
+      <img src={plant.image} alt={plant.name} />
+      <p>Price: {plant.price}</p>
+      {plant.soldOut ? (
+        <span style={{ color: "red" }}>Out of Stock</span>
       ) : (
-        <button>Out of Stock</button>
+        <button onClick={() => onMarkSoldOut(plant.id)}>In Stock</button>
       )}
     </li>
   );
